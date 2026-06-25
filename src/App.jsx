@@ -174,26 +174,34 @@ useEffect(() => {
             value={text}
             onChange={(e) => setText(e.target.value)}
             placeholder="How are you feeling?"
+            // Input
             style={{
-              padding: '14px 16px',
-              borderRadius: 8,
-              border: 'none',
+              padding: '14px 18px',
+              borderRadius: 14,
+              border: '1px solid rgba(255,255,255,0.15)',
+              background: 'rgba(255,255,255,0.08)',
+              backdropFilter: 'blur(12px)',
+              color: 'white',
               flex: 1,
               minWidth: 0,
-              fontSize: 16
+              fontSize: 16,
+              outline: 'none'
             }}
           />
           {speechSupported && (
             <button
               onClick={handleVoiceInput}
+              // Mic button
               style={{
                 padding: '14px 16px',
-                borderRadius: 8,
-                border: 'none',
+                borderRadius: 14,
+                border: '1px solid rgba(255,255,255,0.15)',
                 cursor: 'pointer',
-                background: isListening ? '#ff6b6b' : '#444',
+                background: isListening ? '#ff6b6b' : 'rgba(255,255,255,0.08)',
+                backdropFilter: 'blur(12px)',
                 fontSize: 18,
-                flexShrink: 0
+                flexShrink: 0,
+                transition: 'background 0.3s'
               }}
             >
               🎤
@@ -202,36 +210,60 @@ useEffect(() => {
           <button
             onClick={handleSubmit}
             disabled={loading}
+            
+            // Submit button
             style={{
-              padding: '14px 18px',
-              borderRadius: 8,
-              border: 'none',
+              padding: '14px 22px',
+              borderRadius: 14,
+              border: '1px solid rgba(255,255,255,0.15)',
               cursor: 'pointer',
+              background: scene.color,
+              color: '#0a0a12',
+              fontWeight: 600,
               fontSize: 16,
-              flexShrink: 0
+              flexShrink: 0,
+              transition: 'background 2s ease'
             }}
           >
             {loading ? '...' : 'Submit'}
           </button>
         </div>
       </div>
+      <div style={{
+        position: 'absolute', top: 20, left: 24, zIndex: 3,
+        fontFamily: 'Georgia, serif',
+        fontSize: 'clamp(20px, 3vw, 28px)',
+        fontWeight: 600,
+        color: 'white',
+        letterSpacing: '0.05em',
+        textShadow: `0 0 12px ${scene.color}`,
+        transition: 'text-shadow 2s ease'
+      }}>
+        Aether
+      </div>
       <button
         onClick={() => setShowHistory(s => !s)}
+        
+        // History toggle button
         style={{
           position: 'absolute', top: 20, right: 20, zIndex: 3,
-          padding: '8px 14px', borderRadius: 8, border: 'none', cursor: 'pointer', background: '#444', color: 'white'
+          padding: '10px 16px', borderRadius: 14, border: '1px solid rgba(255,255,255,0.15)',
+          cursor: 'pointer', background: 'rgba(255,255,255,0.08)', backdropFilter: 'blur(12px)',
+          color: 'white', fontSize: 14
         }}
       >
         History ({history.length})
       </button>
 
       {showHistory && (
-        <div style={{
-          position: 'absolute', top: 60, right: 20, zIndex: 3,
-          width: 'min(280px, 80vw)', maxHeight: '70vh', overflowY: 'auto',
-          background: 'rgba(20,20,30,0.9)', borderRadius: 10, padding: 12,
-          display: 'flex', flexDirection: 'column', gap: 10
-        }}>
+        <div // History panel container
+          style={{
+            position: 'absolute', top: 60, right: 20, zIndex: 3,
+            width: 'min(280px, 80vw)', maxHeight: '70vh', overflowY: 'auto',
+            background: 'rgba(15,15,25,0.7)', backdropFilter: 'blur(16px)',
+            borderRadius: 16, padding: 14, border: '1px solid rgba(255,255,255,0.1)',
+            display: 'flex', flexDirection: 'column', gap: 10
+          }}>
           {history.length === 0 && <p style={{ color: '#888', fontSize: 14 }}>No worlds yet.</p>}
           {history.map((item, i) => (
             <div
