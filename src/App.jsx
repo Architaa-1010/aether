@@ -3,6 +3,7 @@ import { Canvas } from '@react-three/fiber'
 import { OrbitControls } from '@react-three/drei'
 import { EffectComposer, Bloom } from '@react-three/postprocessing'
 import ParticleField from './ParticleField'
+const API_URL = 'https://aether-backend-n09e.onrender.com'
 
 export default function App() {
   const [scene, setScene] = useState({ color: '#88ccff', speed: 0.2, count: 2000, motion: 'float' })
@@ -65,7 +66,7 @@ useEffect(() => {
     if (!spokenText.trim()) return
     setLoading(true)
     try {
-      const res = await fetch('http://localhost:8000/analyze', {
+      const res = await fetch(`${API_URL}/analyze`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ text: spokenText })
@@ -90,7 +91,7 @@ useEffect(() => {
     if (!text.trim()) return
     setLoading(true)
     try {
-      const res = await fetch('http://localhost:8000/analyze', {
+      const res = await fetch(`${API_URL}/analyze`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ text })
