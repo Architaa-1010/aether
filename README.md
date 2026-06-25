@@ -19,17 +19,17 @@ Aether turns how you're feeling into a living 3D world. Type or speak a thought,
 ## Tech Stack
 
 **Frontend**
-React
-React Three Fiber
-Three.js
-@react-three/postprocessing
-Web Speech API
+- React
+- React Three Fiber
+- Three.js
+- @react-three/postprocessing
+- Web Speech API
 **Backend**: 
-FastAPI
-Groq API (Llama 3.3 70B)
+- FastAPI
+- Groq API (Llama 3.3 70B)
 **Deployment**: 
-Vercel (Frontend)
-Render (Backend)
+- Vercel (Frontend)
+- Render (Backend)
 
 ## Key design decisions
 
